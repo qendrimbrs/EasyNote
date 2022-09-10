@@ -1,0 +1,125 @@
+WindowManager:
+    FirstWindow:
+    SettingsWindow:
+    CreateNotesWindow:
+    MyNotesWindow:
+
+
+<FirstWindow>:
+    name: "first"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: ""
+            font_size: 32
+            Image:
+                top: (root.top)+30
+                size: 250, 250
+                source: 'notepad-ICON.png'
+
+        Label:
+            text: "EasyNote"
+            font_size: 50
+
+        Button:
+            text: "My Notes"
+            font_size: 32
+            on_release:
+                app.root.current = "myNotes"
+                root.manager.transition.direction = "left"
+
+        Button:
+            text: "Create Notes"
+            font_size: 32
+            on_release:
+                app.root.current = "createNotes"
+                root.manager.transition.direction = "left"
+
+        Button:
+            text: "Next Screen"
+            font_size: 32
+            on_release:
+                app.root.current = "settings"
+                root.manager.transition.direction = "left"
+
+<SettingsWindow>:
+    name: "settings"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "Settings"
+            font_size: 32
+
+        Label:
+            text: ""
+            font_size: 32
+
+        Label:
+            text: ""
+            font_size: 32
+
+        Label:
+            text: ""
+            font_size: 32
+
+        Button:
+            text: "Go Back"
+            font_size: 32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<MyNotesWindow>:
+    name: "myNotes"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "My Notes"
+            font_size: 24
+
+        Button:
+            text: "Go Back"
+            font_size: 32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+
+<CreateNotesWindow>:
+    name: "createNotes"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "Create a Note"
+            font_size: 24
+
+        Label:
+            text: ""
+            font_size: 16
+
+        Label:
+            text: ""
+            font_size: 16
+
+        Label:
+            text: ""
+            font_size: 16
+
+
+        Button:
+            text: "Go Back"
+            font_size: 32
+            on_release:
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
