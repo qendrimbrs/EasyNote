@@ -76,6 +76,7 @@ WindowManager:
                 root.manager.transition.direction = "right"
 
 <MyNotesWindow>:
+    id: myNote
     name: "myNotes"
 
     BoxLayout:
@@ -87,6 +88,11 @@ WindowManager:
             font_size: 24
 
         Button:
+            text: "My Notes"
+            font_size: 24
+            on_release: root.list_data()
+
+        Button:
             text: "Go Back"
             font_size: 32
             on_release:
@@ -95,8 +101,10 @@ WindowManager:
 
 <CreateNotesWindow>:
     name: "createNotes"
+    container: container
 
     BoxLayout:
+        id: container
         orientation: "vertical"
         size: root.width, root.height
 
@@ -108,14 +116,13 @@ WindowManager:
             text: ""
             font_size: 16
 
-        Label:
-            text: ""
-            font_size: 16
+        TextInput:
+            id: note
 
-        Label:
-            text: ""
-            font_size: 16
-
+        Button:
+            text: "Save Note"
+            font_size: 32
+            on_release: root.save_data()
 
         Button:
             text: "Go Back"

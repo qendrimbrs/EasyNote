@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.properties import ObjectProperty, ListProperty
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
@@ -19,11 +20,26 @@ class SettingsWindow(Screen):
 
 
 class MyNotesWindow(Screen):
+    data_list = ListProperty()
+
+    def list_data(self):
+        print(self.data_list)
+
     pass
 
 
 class CreateNotesWindow(Screen):
-    pass
+    container = ObjectProperty(None)
+    data_list = ListProperty([])
+
+    def save_data(self, **kwargs):
+        for child in reversed(self.container.children):
+            if isinstance(child, TextInput):
+                self.data_list.append(child.text)
+
+        self.manager.get_screen("myNotes").data_list = list(self.data_list)
+        self.manager.current = "myNotes"
+        print(self.data_list)
 
 
 class WindowManager(ScreenManager):
@@ -35,7 +51,6 @@ kv = Builder.load_file('createNote.kv')
 
 class EasyNote(App):
     def build(self):
-
         return kv
 
 
