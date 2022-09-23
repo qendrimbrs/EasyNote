@@ -4,9 +4,11 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
+from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.textinput import TextInput
+from kivymd.uix.list import OneLineListItem
 from kivy.uix.floatlayout import FloatLayout
 
 
@@ -23,7 +25,8 @@ class MyNotesWindow(Screen):
     data_list = ListProperty()
 
     def list_data(self):
-        print(self.data_list)
+        data = self.data_list[-1]
+        self.ids.container.add_widget(OneLineListItem(text = f"Note: {data}"))
 
     pass
 
@@ -46,14 +49,14 @@ class WindowManager(ScreenManager):
     pass
 
 
-kv = Builder.load_file('createNote.kv')
+class easyNote(MDApp):
+    title = "easyNote"
 
-
-class EasyNote(App):
     def build(self):
-        return kv
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "Yellow"
+        return Builder.load_file('createNote.kv')
 
 
 if __name__ == "__main__":
-    EasyNote().run(
-    )
+    easyNote().run()
